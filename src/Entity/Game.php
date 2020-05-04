@@ -73,9 +73,9 @@ class Game
     private $creationDate;
 
     /**
-     * @var \Category
+     * @var Category
      *
-     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="games")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      * })
