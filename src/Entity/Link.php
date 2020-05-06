@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Link
- *
+ * @ORM\Entity(repositoryClass="App\Repository\LinkRepository")
  * @ORM\Table(name="link")
  * @ORM\Entity
  */

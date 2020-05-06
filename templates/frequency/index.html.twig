@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Frequency index{% endblock %}
+
+{% block body %}
+    <h1>Frequency index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>UseGame</th>
+                <th>GameRound</th>
+                <th>Score</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for frequency in frequencies %}
+            <tr>
+                <td>{{ frequency.id }}</td>
+                <td>{{ frequency.useGame ? frequency.useGame|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ frequency.gameRound }}</td>
+                <td>{{ frequency.score }}</td>
+                <td>
+                    <a href="{{ path('frequency_show', {'id': frequency.id}) }}">show</a>
+                    <a href="{{ path('frequency_edit', {'id': frequency.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('frequency_new') }}">Create new</a>
+{% endblock %}

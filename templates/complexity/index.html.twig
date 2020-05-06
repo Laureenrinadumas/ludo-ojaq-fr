@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Complexity index{% endblock %}
+
+{% block body %}
+    <h1>Complexity index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NameLevel</th>
+                <th>Level</th>
+                <th>Explanation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for complexity in complexities %}
+            <tr>
+                <td>{{ complexity.id }}</td>
+                <td>{{ complexity.nameLevel }}</td>
+                <td>{{ complexity.level }}</td>
+                <td>{{ complexity.explanation }}</td>
+                <td>
+                    <a href="{{ path('complexity_show', {'id': complexity.id}) }}">show</a>
+                    <a href="{{ path('complexity_edit', {'id': complexity.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('complexity_new') }}">Create new</a>
+{% endblock %}

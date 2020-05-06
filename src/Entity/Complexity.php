@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Complexity
- *
+ * @ORM\Entity(repositoryClass="App\Repository\ComplexityRepository")
  * @ORM\Table(name="complexity")
  * @ORM\Entity
  */
