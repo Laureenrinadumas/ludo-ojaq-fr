@@ -37,12 +37,6 @@ class Game
      */
     private $rule;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="game_time", type="datetime", nullable=false)
-     */
-    private $gameTime;
 
     /**
      * @var int|null
@@ -50,13 +44,6 @@ class Game
      * @ORM\Column(name="age", type="integer", nullable=true)
      */
     private $age;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="number_player", type="integer", nullable=true)
-     */
-    private $numberPlayer;
 
     /**
      * @var string|null
@@ -117,6 +104,26 @@ class Game
     private $gamePlay;
 
     /**
+     * @ORM\Column(type="time", nullable=true)
+     */
+    private $gameTimeMin;
+
+    /**
+     * @ORM\Column(type="time", nullable=true)
+     */
+    private $gameTimeMax;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $numberPlayerMin;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $numberPlayerMax;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -154,18 +161,6 @@ class Game
         return $this;
     }
 
-    public function getGameTime(): ?\DateTimeInterface
-    {
-        return $this->gameTime;
-    }
-
-    public function setGameTime(\DateTimeInterface $gameTime): self
-    {
-        $this->gameTime = $gameTime;
-
-        return $this;
-    }
-
     public function getAge(): ?int
     {
         return $this->age;
@@ -174,18 +169,6 @@ class Game
     public function setAge(?int $age): self
     {
         $this->age = $age;
-
-        return $this;
-    }
-
-    public function getNumberPlayer(): ?int
-    {
-        return $this->numberPlayer;
-    }
-
-    public function setNumberPlayer(?int $numberPlayer): self
-    {
-        $this->numberPlayer = $numberPlayer;
 
         return $this;
     }
@@ -306,4 +289,51 @@ class Game
         return $this;
     }
 
+    public function getGameTimeMin(): ?\DateTimeInterface
+    {
+        return $this->gameTimeMin;
+    }
+
+    public function setGameTimeMin(?\DateTimeInterface $gameTimeMin): self
+    {
+        $this->gameTimeMin = $gameTimeMin;
+
+        return $this;
+    }
+
+    public function getGameTimeMax(): ?\DateTimeInterface
+    {
+        return $this->gameTimeMax;
+    }
+
+    public function setGameTimeMax(?\DateTimeInterface $gameTimeMax): self
+    {
+        $this->gameTimeMax = $gameTimeMax;
+
+        return $this;
+    }
+
+    public function getNumberPlayerMin(): ?int
+    {
+        return $this->numberPlayerMin;
+    }
+
+    public function setNumberPlayerMin(?int $numberPlayerMin): self
+    {
+        $this->numberPlayerMin = $numberPlayerMin;
+
+        return $this;
+    }
+
+    public function getNumberPlayerMax(): ?int
+    {
+        return $this->numberPlayerMax;
+    }
+
+    public function setNumberPlayerMax(?int $numberPlayerMax): self
+    {
+        $this->numberPlayerMax = $numberPlayerMax;
+
+        return $this;
+    }
 }

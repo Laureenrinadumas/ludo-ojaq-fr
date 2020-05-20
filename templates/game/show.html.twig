@@ -20,16 +20,8 @@
                 <td>{{ game.rule }}</td>
             </tr>
             <tr>
-                <th>GameTime</th>
-                <td>{{ game.gameTime ? game.gameTime|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
                 <th>Age</th>
                 <td>{{ game.age }}</td>
-            </tr>
-            <tr>
-                <th>NumberPlayer</th>
-                <td>{{ game.numberPlayer }}</td>
             </tr>
             <tr>
                 <th>Poster</th>
@@ -38,6 +30,22 @@
             <tr>
                 <th>CreationDate</th>
                 <td>{{ game.creationDate }}</td>
+            </tr>
+            <tr>
+                <th>GameTimeMin</th>
+                <td>{{ game.gameTimeMin ? game.gameTimeMin|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>GameTimeMax</th>
+                <td>{{ game.gameTimeMax ? game.gameTimeMax|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>NumberPlayerMin</th>
+                <td>{{ game.numberPlayerMin }}</td>
+            </tr>
+            <tr>
+                <th>NumberPlayerMax</th>
+                <td>{{ game.numberPlayerMax }}</td>
             </tr>
         </tbody>
     </table>

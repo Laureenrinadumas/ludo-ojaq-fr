@@ -12,12 +12,12 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class playGameController
  * @package App\Controller
- * @Route("", name="play_")
+ * @Route("", name="play")
  */
 class playGameController extends AbstractController
 {
     /**
-     * @Route("/", name="play_game", methods={"GET"})
+     * @Route("", name="_game", methods={"GET"})
      * @param GameRepository $gameRepository
      * @return Response
      */

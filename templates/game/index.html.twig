@@ -11,11 +11,13 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Rule</th>
-                <th>GameTime</th>
                 <th>Age</th>
-                <th>NumberPlayer</th>
                 <th>Poster</th>
                 <th>CreationDate</th>
+                <th>GameTimeMin</th>
+                <th>GameTimeMax</th>
+                <th>NumberPlayerMin</th>
+                <th>NumberPlayerMax</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -25,11 +27,13 @@
                 <td>{{ game.id }}</td>
                 <td>{{ game.name }}</td>
                 <td>{{ game.rule }}</td>
-                <td>{{ game.gameTime ? game.gameTime|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ game.age }}</td>
-                <td>{{ game.numberPlayer }}</td>
                 <td>{{ game.poster }}</td>
                 <td>{{ game.creationDate }}</td>
+                <td>{{ game.gameTimeMin ? game.gameTimeMin|date('H:i:s') : '' }}</td>
+                <td>{{ game.gameTimeMax ? game.gameTimeMax|date('H:i:s') : '' }}</td>
+                <td>{{ game.numberPlayerMin }}</td>
+                <td>{{ game.numberPlayerMax }}</td>
                 <td>
                     <a href="{{ path('game_show', {'id': game.id}) }}">show</a>
                     <a href="{{ path('game_edit', {'id': game.id}) }}">edit</a>
@@ -37,7 +41,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">no records found</td>
+                <td colspan="11">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
