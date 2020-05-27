@@ -3,19 +3,31 @@
 {% block title %}Game index{% endblock %}
 
 {% block body %}
-    <h1>Game index</h1>
 
-    <table class="table">
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card text-white bg-dark">
+            <div class="card-header text-center">
+                <h1>Liste des jeux</h1>
+                <div class="card-body">
+
+                    <table class="table table-dark ">
+
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Rule</th>
-                <th>GameTime</th>
+                <th>Nom</th>
+                <th>Règle</th>
                 <th>Age</th>
-                <th>NumberPlayer</th>
-                <th>Poster</th>
-                <th>CreationDate</th>
+                <th>Date de Création</th>
+                <th>Catégorie</th>
+                <th>Complexité du jeu</th>
+                <th>Temps minimum</th>
+                <th>Temps maximum</th>
+                <th>Nombre de joueur minimum</th>
+                <th>Nombre de joueur maximum</th>
+                <th>Mécanique de jeu</th>
+
                 <th>actions</th>
             </tr>
         </thead>
@@ -25,11 +37,22 @@
                 <td>{{ game.id }}</td>
                 <td>{{ game.name }}</td>
                 <td>{{ game.rule }}</td>
-                <td>{{ game.gameTime ? game.gameTime|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ game.age }}</td>
-                <td>{{ game.numberPlayer }}</td>
-                <td>{{ game.poster }}</td>
-                <td>{{ game.creationDate }}</td>
+                <td>{{ game.creationDate|date('Y') }}</td>
+                <td>{{ game.category }}</td>
+                <td>{{ game.complexity }}</td>
+                <td>{{ game.gameTimeMin ? game.gameTimeMin|date('H:i:s') : '' }}</td>
+                <td>{{ game.gameTimeMax ? game.gameTimeMax|date('H:i:s') : '' }}</td>
+                <td>{{ game.numberPlayerMin }}</td>
+                <td>{{ game.numberPlayerMax }}</td>
+                <td>
+                    {% for gamePlay in game.gamePlays %}
+                   <li>{{ gamePlay.namePlay }}</li>
+                    {% endfor %}
+                </td>
+
+
+
                 <td>
                     <a href="{{ path('game_show', {'id': game.id}) }}">show</a>
                     <a href="{{ path('game_edit', {'id': game.id}) }}">edit</a>
@@ -37,11 +60,16 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">no records found</td>
+                <td colspan="11">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     <a href="{{ path('game_new') }}">Create new</a>
 {% endblock %}

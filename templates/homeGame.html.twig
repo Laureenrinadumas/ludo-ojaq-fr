@@ -1,0 +1,23 @@
+{% extends'base.html.twig' %}
+
+{% block body %}
+
+ {% for game in games %}
+    <div class="card card-color" style="width: 16rem;">
+        <img src="{{ game.poster }}" class="card-img-top" alt="{{ game.name }}">
+        <div class="card-body">
+            <h5 class="card-title">{{ game.name }}</h5>
+            <p class="card-text">{{ game.rule }}</p>
+        </div>
+        <ul class="list-group list-group-flush list-color">
+            <li class="list-group-item">{{ game.creationDate|date ("d/m/Y") }}</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+        <div class="card-body">
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+        </div>
+    </div>
+ {% endfor %}
+{% endblock %}

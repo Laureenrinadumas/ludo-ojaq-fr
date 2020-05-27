@@ -37,12 +37,6 @@ class Game
      */
     private $rule;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="game_time", type="datetime", nullable=false)
-     */
-    private $gameTime;
 
     /**
      * @var int|null
@@ -52,13 +46,6 @@ class Game
     private $age;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="number_player", type="integer", nullable=true)
-     */
-    private $numberPlayer;
-
-    /**
      * @var string|null
      *
      * @ORM\Column(name="poster", type="string", length=255, nullable=true)
@@ -66,9 +53,7 @@ class Game
     private $poster;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="creation_date", type="string", length=255, nullable=true)
+     * @ORM\Column(name="creation_date", type="date", length=255, nullable=true)
      */
     private $creationDate;
 
@@ -83,7 +68,6 @@ class Game
     private $category;
 
     /**
-     * @var \User
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
@@ -93,7 +77,6 @@ class Game
     private $user;
 
     /**
-     * @var \Complexity
      *
      * @ORM\ManyToOne(targetEntity="Complexity")
      * @ORM\JoinColumns({
@@ -103,26 +86,43 @@ class Game
     private $complexity;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
      * @ORM\ManyToMany(targetEntity="Frequency", mappedBy="game")
      */
     private $frequency;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="GamePlay", mappedBy="game")
+     * @ORM\ManyToMany(targetEntity="GamePlay", mappedBy="games")
      */
-    private $gamePlay;
+    private $gamePlays;
+
+    /**
+     * @ORM\Column(type="time", nullable=true)
+     */
+    private $gameTimeMin;
+
+    /**
+     * @ORM\Column(type="time", nullable=true)
+     */
+    private $gameTimeMax;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $numberPlayerMin;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $numberPlayerMax;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->frequency = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->gamePlay = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->frequency = new ArrayCollection();
+        $this->gamePlays = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -154,18 +154,6 @@ class Game
         return $this;
     }
 
-    public function getGameTime(): ?\DateTimeInterface
-    {
-        return $this->gameTime;
-    }
-
-    public function setGameTime(\DateTimeInterface $gameTime): self
-    {
-        $this->gameTime = $gameTime;
-
-        return $this;
-    }
-
     public function getAge(): ?int
     {
         return $this->age;
@@ -174,18 +162,6 @@ class Game
     public function setAge(?int $age): self
     {
         $this->age = $age;
-
-        return $this;
-    }
-
-    public function getNumberPlayer(): ?int
-    {
-        return $this->numberPlayer;
-    }
-
-    public function setNumberPlayer(?int $numberPlayer): self
-    {
-        $this->numberPlayer = $numberPlayer;
 
         return $this;
     }
@@ -202,15 +178,17 @@ class Game
         return $this;
     }
 
-    public function getCreationDate(): ?string
+    public function getCreationDate(): ?\DateTimeInterface
     {
         return $this->creationDate;
     }
 
     public function setCreationDate(?string $creationDate): self
     {
-        $this->creationDate = $creationDate;
-
+        try {
+            $this->creationDate = new \DateTime($creationDate);
+        } catch (\Exception $e) {
+        };
         return $this;
     }
 
@@ -281,15 +259,15 @@ class Game
     /**
      * @return Collection|GamePlay[]
      */
-    public function getGamePlay(): Collection
+    public function getGamePlays(): Collection
     {
-        return $this->gamePlay;
+        return $this->gamePlays;
     }
 
     public function addGamePlay(GamePlay $gamePlay): self
     {
-        if (!$this->gamePlay->contains($gamePlay)) {
-            $this->gamePlay[] = $gamePlay;
+        if (!$this->gamePlays->contains($gamePlay)) {
+            $this->gamePlays[] = $gamePlay;
             $gamePlay->addGame($this);
         }
 
@@ -298,10 +276,58 @@ class Game
 
     public function removeGamePlay(GamePlay $gamePlay): self
     {
-        if ($this->gamePlay->contains($gamePlay)) {
-            $this->gamePlay->removeElement($gamePlay);
+        if ($this->gamePlays->contains($gamePlay)) {
+            $this->gamePlays->removeElement($gamePlay);
             $gamePlay->removeGame($this);
         }
+
+        return $this;
+    }
+
+    public function getGameTimeMin(): ?\DateTimeInterface
+    {
+        return $this->gameTimeMin;
+    }
+
+    public function setGameTimeMin(?\DateTimeInterface $gameTimeMin): self
+    {
+        $this->gameTimeMin = $gameTimeMin;
+
+        return $this;
+    }
+
+    public function getGameTimeMax(): ?\DateTimeInterface
+    {
+        return $this->gameTimeMax;
+    }
+
+    public function setGameTimeMax(?\DateTimeInterface $gameTimeMax): self
+    {
+        $this->gameTimeMax = $gameTimeMax;
+
+        return $this;
+    }
+
+    public function getNumberPlayerMin(): ?int
+    {
+        return $this->numberPlayerMin;
+    }
+
+    public function setNumberPlayerMin(?int $numberPlayerMin): self
+    {
+        $this->numberPlayerMin = $numberPlayerMin;
+
+        return $this;
+    }
+
+    public function getNumberPlayerMax(): ?int
+    {
+        return $this->numberPlayerMax;
+    }
+
+    public function setNumberPlayerMax(?int $numberPlayerMax): self
+    {
+        $this->numberPlayerMax = $numberPlayerMax;
 
         return $this;
     }

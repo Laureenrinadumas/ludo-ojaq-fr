@@ -38,26 +38,17 @@ class GamePlay
     private $definition;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Game", inversedBy="gamePlay")
-     * @ORM\JoinTable(name="game_play_game",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="game_play_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="game_id", referencedColumnName="id")
-     *   }
-     * )
      */
-    private $game;
+    private $games;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->game = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->games = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -92,15 +83,15 @@ class GamePlay
     /**
      * @return Collection|Game[]
      */
-    public function getGame(): Collection
+    public function getGames(): Collection
     {
-        return $this->game;
+        return $this->games;
     }
 
     public function addGame(Game $game): self
     {
-        if (!$this->game->contains($game)) {
-            $this->game[] = $game;
+        if (!$this->games->contains($game)) {
+            $this->games[] = $game;
         }
 
         return $this;
@@ -108,11 +99,15 @@ class GamePlay
 
     public function removeGame(Game $game): self
     {
-        if ($this->game->contains($game)) {
-            $this->game->removeElement($game);
+        if ($this->games->contains($game)) {
+            $this->games->removeElement($game);
         }
 
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->namePlay;
+    }
 }
