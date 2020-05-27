@@ -9,7 +9,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">{{ form_row (form.rule) }}</div>
-        <div class="col-md-6">{{ form_row (form.gamePlay) }}</div>
+        <div class="col-md-6">{{ form_row (form.gamePlays) }}</div>
     </div>
     <div class="row">
         <div class="col-md-4">{{ form_row (form.age) }}</div>
@@ -30,6 +30,6 @@
     </div>
 
 </div>
-    {{ form_widget(form) }}
+    {{ form_rest(form) }}
     <button class="btn">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

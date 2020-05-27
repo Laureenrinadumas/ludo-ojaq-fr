@@ -53,9 +53,7 @@ class Game
     private $poster;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="creation_date", type="string", length=255, nullable=true)
+     * @ORM\Column(name="creation_date", type="date", length=255, nullable=true)
      */
     private $creationDate;
 
@@ -70,7 +68,6 @@ class Game
     private $category;
 
     /**
-     * @var \User
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
@@ -80,7 +77,6 @@ class Game
     private $user;
 
     /**
-     * @var \Complexity
      *
      * @ORM\ManyToOne(targetEntity="Complexity")
      * @ORM\JoinColumns({
@@ -90,18 +86,14 @@ class Game
     private $complexity;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
      * @ORM\ManyToMany(targetEntity="Frequency", mappedBy="game")
      */
     private $frequency;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="GamePlay", mappedBy="game")
+     * @ORM\ManyToMany(targetEntity="GamePlay", mappedBy="games")
      */
-    private $gamePlay;
+    private $gamePlays;
 
     /**
      * @ORM\Column(type="time", nullable=true)
@@ -128,8 +120,9 @@ class Game
      */
     public function __construct()
     {
-        $this->frequency = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->gamePlay = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->frequency = new ArrayCollection();
+        $this->gamePlays = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -185,15 +178,17 @@ class Game
         return $this;
     }
 
-    public function getCreationDate(): ?string
+    public function getCreationDate(): ?\DateTimeInterface
     {
         return $this->creationDate;
     }
 
     public function setCreationDate(?string $creationDate): self
     {
-        $this->creationDate = $creationDate;
-
+        try {
+            $this->creationDate = new \DateTime($creationDate);
+        } catch (\Exception $e) {
+        };
         return $this;
     }
 
@@ -264,15 +259,15 @@ class Game
     /**
      * @return Collection|GamePlay[]
      */
-    public function getGamePlay(): Collection
+    public function getGamePlays(): Collection
     {
-        return $this->gamePlay;
+        return $this->gamePlays;
     }
 
     public function addGamePlay(GamePlay $gamePlay): self
     {
-        if (!$this->gamePlay->contains($gamePlay)) {
-            $this->gamePlay[] = $gamePlay;
+        if (!$this->gamePlays->contains($gamePlay)) {
+            $this->gamePlays[] = $gamePlay;
             $gamePlay->addGame($this);
         }
 
@@ -281,8 +276,8 @@ class Game
 
     public function removeGamePlay(GamePlay $gamePlay): self
     {
-        if ($this->gamePlay->contains($gamePlay)) {
-            $this->gamePlay->removeElement($gamePlay);
+        if ($this->gamePlays->contains($gamePlay)) {
+            $this->gamePlays->removeElement($gamePlay);
             $gamePlay->removeGame($this);
         }
 
@@ -336,4 +331,5 @@ class Game
 
         return $this;
     }
+
 }

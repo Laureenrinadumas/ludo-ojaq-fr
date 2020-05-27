@@ -2,15 +2,15 @@
 
 {% block body %}
 
-
-    <div class="card" style="width: 16rem;">
-        <img src="..." class="card-img-top" alt="...">
+ {% for game in games %}
+    <div class="card card-color" style="width: 16rem;">
+        <img src="{{ game.poster }}" class="card-img-top" alt="{{ game.name }}">
         <div class="card-body">
-            <h5 class="card-title">hello</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h5 class="card-title">{{ game.name }}</h5>
+            <p class="card-text">{{ game.rule }}</p>
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
+        <ul class="list-group list-group-flush list-color">
+            <li class="list-group-item">{{ game.creationDate|date ("d/m/Y") }}</li>
             <li class="list-group-item">Dapibus ac facilisis in</li>
             <li class="list-group-item">Vestibulum at eros</li>
         </ul>
@@ -19,5 +19,5 @@
             <a href="#" class="card-link">Another link</a>
         </div>
     </div>
-
+ {% endfor %}
 {% endblock %}

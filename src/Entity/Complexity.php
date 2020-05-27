@@ -29,13 +29,6 @@ class Complexity
     private $nameLevel;
 
     /**
-     * @var int|null
-     *
-     * @ORM\Column(name="level", type="integer", nullable=true)
-     */
-    private $level;
-
-    /**
      * @var string|null
      *
      * @ORM\Column(name="explanation", type="text", length=0, nullable=true)
@@ -59,18 +52,6 @@ class Complexity
         return $this;
     }
 
-    public function getLevel(): ?int
-    {
-        return $this->level;
-    }
-
-    public function setLevel(?int $level): self
-    {
-        $this->level = $level;
-
-        return $this;
-    }
-
     public function getExplanation(): ?string
     {
         return $this->explanation;
@@ -83,5 +64,9 @@ class Complexity
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->nameLevel;
+    }
 
 }

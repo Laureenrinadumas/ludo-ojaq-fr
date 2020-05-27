@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Game;
+use App\Entity\GamePlay;
 use App\Form\GameType;
+use App\Repository\GameRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,15 +19,17 @@ class GameController extends AbstractController
 {
     /**
      * @Route("/", name="game_index", methods={"GET"})
+     * @param GameRepository $gameRepository
+     * @return Response
      */
-    public function index(): Response
+    public function index(GameRepository $gameRepository): Response
     {
-        $games = $this->getDoctrine()
-            ->getRepository(Game::class)
-            ->findAll();
+
+
 
         return $this->render('game/index.html.twig', [
-            'games' => $games,
+            'games' => $gameRepository->findAllGamesWithGamePlay(),
+
         ]);
     }
 
