@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Game
@@ -40,7 +41,12 @@ class Game
 
     /**
      * @var int|null
-     *
+    @Assert\Range(
+     *      min = 1,
+     *      max = 99,
+     *      minMessage = "L'âge doit être supérieur à {{ limit }}",
+     *      maxMessage = "L'âge doit être inférieur à {{ limit }}"
+     * )
      * @ORM\Column(name="age", type="integer", nullable=true)
      */
     private $age;
@@ -54,6 +60,7 @@ class Game
 
     /**
      * @ORM\Column(name="creation_date", type="date", length=255, nullable=true)
+     *
      */
     private $creationDate;
 
@@ -107,6 +114,11 @@ class Game
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *     min = 1,
+     *     max = 100,
+     *
+     * )
      */
     private $numberPlayerMin;
 
