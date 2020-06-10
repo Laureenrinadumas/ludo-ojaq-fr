@@ -36,13 +36,10 @@ class GameType extends AbstractType
             ->add('poster', TextType::class, [
                 'label' => 'Image du jeu (url)',
             ])
-            ->add('creationDate', TextType::class, [
-                'label' => 'Date de création ',
-                'required' => false,
-                'empty_data' => null,
-                'attr' => array(
-                    'placeholder' => 'Année de création'
-                )
+            ->add('creationDate', DateType::class, [
+                'label' => 'Année de création ',
+                'widget' => 'single_text',
+                'format'=> 'yyyy'
             ])
             ->add('gameTimeMin', TimeType::class, [
                 'label' => 'Temps d\'une partie minimum',

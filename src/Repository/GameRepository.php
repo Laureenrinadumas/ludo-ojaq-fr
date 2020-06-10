@@ -24,6 +24,7 @@ class GameRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('g')
             ->leftJoin('g.gamePlays', 'p')
             ->addSelect('g', 'p')
+            ->orderBy('g.id', 'DESC' )
             ->getQuery();
         return $qb->execute();
     }

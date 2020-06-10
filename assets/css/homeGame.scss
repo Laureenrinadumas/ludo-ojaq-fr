@@ -3,9 +3,12 @@ body {
   font-family: $bodyFont;
   color: black;
 }
-.card-color {
-  background-color:  #304d53;
-}
+
 .list-color li{
-  background-color: #3c999e;
+  background-color: #304d53;
+}
+.card {
+  border-radius: 0 0 25px 0 ;
+  box-shadow: 0 0 5px 2px rgba(60, 153, 158, 0.2);
+  border-style: none;
 }
