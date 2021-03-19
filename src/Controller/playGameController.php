@@ -4,7 +4,9 @@
 namespace App\Controller;
 
 use App\Entity\Game;
+use App\Entity\Category;
 use App\Repository\GameRepository;
+use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class playGameController
  * @package App\Controller
- * @Route("", name="play")
+ * @Route("", name="home")
  */
 class playGameController extends AbstractController
 {
@@ -26,5 +28,8 @@ class playGameController extends AbstractController
         return $this->render('homeGame.html.twig', [
             'games' => $gameRepository->findAll(),
         ]);
+    }
+    public function showByCategory(){
+
     }
 }

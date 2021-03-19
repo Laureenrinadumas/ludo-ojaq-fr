@@ -9,12 +9,12 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Role</th>
-                <th>Username</th>
-                <th>Avatar</th>
-                <th>Biography</th>
                 <th>Email</th>
+                <th>Roles</th>
                 <th>Password</th>
+                <th>Username</th>
+                <th>DateOfBirth</th>
+                <th>Gender</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,12 +22,12 @@
         {% for user in users %}
             <tr>
                 <td>{{ user.id }}</td>
-                <td>{{ user.role }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.avatar }}</td>
-                <td>{{ user.biography }}</td>
                 <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                 <td>{{ user.password }}</td>
+                <td>{{ user.Username }}</td>
+                <td>{{ user.dateOfBirth ? user.dateOfBirth|date('Y-m-d') : '' }}</td>
+                <td>{{ user.gender }}</td>
                 <td>
                     <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>

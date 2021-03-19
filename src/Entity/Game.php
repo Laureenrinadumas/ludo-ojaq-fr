@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Game
  * @ORM\Entity(repositoryClass="App\Repository\GameRepository")
- * @ORM\Table(name="game", indexes={@ORM\Index(name="IDX_232B318CDAC7F446", columns={"complexity_id"}), @ORM\Index(name="IDX_232B318C12469DE2", columns={"category_id"}), @ORM\Index(name="IDX_232B318CA76ED395", columns={"user_id"})})
+ * @ORM\Table(name="game", indexes={@ORM\Index(name="IDX_232B318CDAC7F446", columns={"complexity_id"}), @ORM\Index(name="IDX_232B318C12469DE2", columns={"category_id"}) })
  * @ORM\Entity
  */
 class Game
@@ -74,14 +74,6 @@ class Game
      */
     private $category;
 
-    /**
-     *
-     * @ORM\ManyToOne(targetEntity="User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * })
-     */
-    private $user;
 
     /**
      *
@@ -212,18 +204,6 @@ class Game
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
 
         return $this;
     }
