@@ -1,30 +1,41 @@
 {% extends'base.html.twig' %}
 
 {% block body %}
+
     <div class="row d-flex justify-content-center">
 
         {% for game in games %}
-            <div class="card-deck col-md-4">
-            <div class="card bg-dark m-5" style="width: 16rem;">
-                <img src="{{ game.poster }}" class="card-img-top" alt="{{ game.name }}">
-                <div class="card-body text-info">
-                    <h5 class="card-title">{{ game.name }}</h5>
-                    <p class="card-text">{{ game.rule }}</p>
+            <div class="card-deck col-md-3">
+                <div class="card card-Color bg-dark m-5" style="width: 14rem;">
+                    <img src="{{ game.poster }}" class="card-img-top imgCards img-thumbnail " alt="{{ game.name }}">
+                    <div class="card-body ">
+                        <h5 class="card-title text-uppercase font-weight-bold text-center text-warning">{{ game.name }}</h5>
+                        <p class="card-text overflow-ellipsis">{{ game.rule|u.truncate(20, '...') }}</p>
+                    </div>
+                    <ul class="list-group list-group-flush list-color">
+                        <li class="list-group-item pl-2 p-0 ">Créé en {{ game.creationDate|date ("Y") }}</li>
+                        <li class="list-group-item pl-2 p-0 ">A partir de +{{ game.age }} ans</li>
+                        <li class="list-group-item pl-2 p-0 ">{{ game.complexity }}</li>
+                        <li class="list-group-item pl-2 p-0 ">Durée de
+                            : {{ game.gameTimeMin ? game.gameTimeMin|date('H:i') : '' }}
+                            à {{ game.gameTimeMax ? game.gameTimeMax|date('H:i') : '' }}</li>
+                        <li class="list-group-item pl-2 p-0 "> De {{ game.numberPlayerMin }}
+                            à {{ game.numberPlayerMax }}
+                            joueurs
+                        </li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="{{ path('content_game', {'id': game.id}) }}" class="btn btn-outline-warning">En savoir
+                            plus <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
                 </div>
-                <ul class="list-group list-group-flush list-color">
-                    <li class="list-group-item text-info">Créé en {{ game.creationDate|date ("Y") }}</li>
-                    <li class="list-group-item text-info">A partir de +{{ game.age }} ans</li>
-                    <li class="list-group-item text-info">{{ game.complexity }}</li>
-                    <li class="list-group-item text-info">Durée de la partie environ : {{ game.gameTimeMin ? game.gameTimeMin|date('H:i') : '' }} à {{ game.gameTimeMax ? game.gameTimeMax|date('H:i') : '' }}</li>
-                    <li class="list-group-item text-info"> De {{ game.numberPlayerMin }} à {{ game.numberPlayerMax }} joueurs</li>
-                </ul>
-                <div class="card-body">
-                    <a href="#" class="card-link text-info">En savoir plus</a>
-                </div>
-            </div>
             </div>
         {% endfor %}
 
-
     </div>
+    <div class="pagination align-self-end mr-4">
+        {{ knp_pagination_render(games) }}
+    </div>
+
+
 {% endblock %}
