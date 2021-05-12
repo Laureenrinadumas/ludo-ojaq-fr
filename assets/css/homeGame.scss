@@ -5,10 +5,16 @@ body {
 }
 
 .list-color li{
-  background-color: #304d53;
+  background-color: #343a40;
 }
-.card {
+.card-Color {
   border-radius: 0 0 25px 0 ;
-  box-shadow: 0 0 5px 2px rgba(60, 153, 158, 0.2);
+  box-shadow: 0 0 6px 0 rgb(0, 0, 0);
   border-style: none;
 }
+
+.imgCards {
+  height: 14rem;
+
+}
+

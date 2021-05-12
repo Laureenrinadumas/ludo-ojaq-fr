@@ -31,7 +31,7 @@ class GameType extends AbstractType
                 'label' => 'Règle du jeu',
             ])
             ->add('age', IntegerType::class, [
-                'label' => 'Age',
+                'label' => '+Age',
             ])
             ->add('poster', TextType::class, [
                 'label' => 'Image du jeu (url)',
@@ -39,7 +39,7 @@ class GameType extends AbstractType
             ->add('creationDate', DateType::class, [
                 'label' => 'Année de création ',
                 'widget' => 'single_text',
-                'format'=> 'yyyy'
+                'format'=> 'yyyy',
             ])
             ->add('gameTimeMin', TimeType::class, [
                 'label' => 'Temps d\'une partie minimum',

@@ -182,19 +182,23 @@ class Game
         return $this;
     }
 
-    public function getCreationDate(): ?\DateTimeInterface
+    /**
+     * @return mixed
+     */
+    public function getCreationDate()
     {
         return $this->creationDate;
     }
 
-    public function setCreationDate(?string $creationDate): self
+    /**
+     * @param mixed $creationDate
+     */
+    public function setCreationDate($creationDate): void
     {
-        try {
-            $this->creationDate = new \DateTime($creationDate);
-        } catch (\Exception $e) {
-        };
-        return $this;
+        $this->creationDate = $creationDate;
     }
+
+
 
     public function getCategory(): ?Category
     {

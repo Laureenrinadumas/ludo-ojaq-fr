@@ -1,16 +1,21 @@
 footer {
   padding: 1% 5%;
   text-align:center;
-  background-color: #304d53;
+  background-color: #141b21;
+ box-shadow: 0 0 1em #141b21;
+  }
 
-
-  a {
-    color: #3c999e;
-    font-weight: 500;
+  .myName {
+    color: #ffe70d;
+    font-weight: bold;
     text-decoration: none;
     &:hover {
-      color: white;
+      color: #2e97dd;
       text-decoration: none;
     }
   }
-}
+
+  .signature {
+    color: #343A40;
+    font-weight: bold;
+  }
