@@ -29,7 +29,7 @@ class homeGameController extends AbstractController
     {
         $donnees = $this->getDoctrine()->getRepository(Game::class)->findBy([]);
         $games = $paginator->paginate(
-            $donnees, $request->query->getInt('page', 1), 8 );
+            $donnees, $request->query->getInt('page', 1), 4 );
         return $this->render('homeGame.html.twig', [
            'games' => $games,
         ]);
