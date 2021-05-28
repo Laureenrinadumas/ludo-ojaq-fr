@@ -1,7 +1,9 @@
 {% extends'base.html.twig' %}
 
 {% block body %}
-
+    <div class="count">
+       Vous avez au total : {{ games.getTotalItemCount }} jeux
+    </div>
     <div class="row d-flex justify-content-center">
 
         {% for game in games %}
@@ -33,9 +35,10 @@
         {% endfor %}
 
     </div>
-    <div class="pagination align-self-end mr-4">
-        {{ knp_pagination_render(games) }}
-    </div>
+    <div class="pagination justify-content-center pagination-sm mb-5 ">
 
+         {{ knp_pagination_render(games) }}
+
+    </div>
 
 {% endblock %}

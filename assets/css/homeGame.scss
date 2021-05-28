@@ -4,11 +4,12 @@ body {
   color: black;
 }
 
-.list-color li{
+.list-color li {
   background-color: #343a40;
 }
+
 .card-Color {
-  border-radius: 0 0 25px 0 ;
+  border-radius: 0 0 25px 0;
   box-shadow: 0 0 6px 0 rgb(0, 0, 0);
   border-style: none;
 }
@@ -17,4 +18,31 @@ body {
   height: 14rem;
 
 }
+.pagination > li > a
+{
+  background-color: #343a40;
+  color: #ffe70d;
+  border: none;
+}
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+  color: #343a40;
+  background-color: #FFFFFF;
+  border-color: #FFFFFF;
+}
 
+.pagination > .active > a
+{
+  color: #343a40;
+  background-color:  #FFFFFF;
+  border:  #FFFFFF;
+}
+
+.pagination > .active > a:hover
+{
+  background-color:  #FFFFFF;
+  border:  #FFFFFF;
+}
