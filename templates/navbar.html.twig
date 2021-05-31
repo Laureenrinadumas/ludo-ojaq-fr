@@ -2,27 +2,40 @@
     <a class="" href="#"><img class="img-fluid w-50 mt-3" src="{{ asset('build/images/ojaqlogo.png') }}" alt="logo"></a>
 </div>
 
-<nav class="navbar navbar-expand-sm justify-content-center navColor m-0 p-0" >
+<nav class="navbar navbar-expand-sm justify-content-center navColor m-0 p-0">
     <ul class="nav typo">
         <li class="nav-item">
-            <a class="nav-link text-menu h2 ml-5 mr-5 mb-0" href="{{ path('home_game') }}">Mes jeux</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-menu h2 ml-5 mr-5 mb-0" href="#"> Catégories</a>
+            <a class="nav-link text-menu h2 ml-5 mr-4 mb-0" href="{{ path('home_game') }}">Ma collection de jeux</a>
         </li>
         {% if app.user %}
             <li class="nav-item">
                 <a class="nav-link text-menu h2 ml-5 mr-5 mb-0" href="#"><img class="icon-nav mr-2" src="{{ asset('build/images/meeple-king.png') }}" alt="icon-perso">Mon compte</a>
             </li>
-            <li class="nav-item nav-link active">
+            <li class="nav-item h2 nav-link active">
                 Bonjour {{ app.user.email }} !
             </li>
-
             <a class="nav-link text-danger text-justify-left " href="{{ path('app_logout') }}">Se déconnecter</a>
         {% else %}
-
-
             <a class="nav-link text-success " href="{{ path('app_login') }}">Se connecter</a>
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-success" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Gestion Admin
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item text-warning" href="{{ path('game_index') }}">Jeux</a>
+                    <a class="dropdown-item" href="{{ path('category_index') }}">Catégories</a>
+                    <a class="dropdown-item" href="{{ path('game_play_index') }}">Mécaniques de jeu</a>
+                    <a class="dropdown-item" href="{{ path('complexity_index') }}">Complexités</a>
+                    <a class="dropdown-item" href="{{ path('frequency_index') }}">Fréquences</a>
+                    <a class="dropdown-item" href="{{ path('link_index') }}">Liens internet</a>
+                    <a class="dropdown-item" href="{{ path('user_index') }}">Utilisateurs</a>
+
+                </div>
+            </li>
         {% endif %}
     </ul>
 </nav>

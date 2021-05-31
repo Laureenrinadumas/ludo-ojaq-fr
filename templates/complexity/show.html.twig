@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Complexity{% endblock %}
+{% block title %}Complexité du jeu{% endblock %}
 
 {% block body %}
-    <h1>Complexity</h1>
+    <h1>Complexité du jeu</h1>
 
     <table class="table">
         <tbody>
@@ -12,19 +12,19 @@
                 <td>{{ complexity.id }}</td>
             </tr>
             <tr>
-                <th>NameLevel</th>
+                <th>Nom du niveau</th>
                 <td>{{ complexity.nameLevel }}</td>
             </tr>
             <tr>
-                <th>Explanation</th>
+                <th>Explication</th>
                 <td>{{ complexity.explanation }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('complexity_index') }}">back to list</a>
+    <a href="{{ path('complexity_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('complexity_edit', {'id': complexity.id}) }}">edit</a>
+    <a href="{{ path('complexity_edit', {'id': complexity.id}) }}">Éditer</a>
 
     {{ include('complexity/_delete_form.html.twig') }}
 {% endblock %}
