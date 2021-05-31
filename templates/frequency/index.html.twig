@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Frequency index{% endblock %}
+{% block title %}Index fréquence{% endblock %}
 
 {% block body %}
-    <h1>Frequency index</h1>
+    <h1>Index des fréquences</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>UseGame</th>
-                <th>GameRound</th>
+                <th>Date d'utilisation</th>
+                <th>Tour de jeu</th>
                 <th>Score</th>
                 <th>actions</th>
             </tr>
@@ -23,17 +23,17 @@
                 <td>{{ frequency.gameRound }}</td>
                 <td>{{ frequency.score }}</td>
                 <td>
-                    <a href="{{ path('frequency_show', {'id': frequency.id}) }}">show</a>
-                    <a href="{{ path('frequency_edit', {'id': frequency.id}) }}">edit</a>
+                    <a href="{{ path('frequency_show', {'id': frequency.id}) }}"><i class="fas fa-eye"></i></a>
+                    <a href="{{ path('frequency_edit', {'id': frequency.id}) }}"><i class="fas fa-edit"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Oups ! pas d'enregistrement pas ici.</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('frequency_new') }}">Create new</a>
+    <a href="{{ path('frequency_new') }}">Créer une nouvelle fréquence</a>
 {% endblock %}

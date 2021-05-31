@@ -1,12 +1,17 @@
 {% extends'base.html.twig' %}
 
-{% block body  %}
+{% block body %}
     <h1>{{ game.name }}</h1>
-    <ul class="list-group list-group-flush list-color">
-        <li class="list-group-item ">Créé en {{ game.creationDate|date ("Y") }}</li>
-        <li class="list-group-item ">A partir de +{{ game.age }} ans</li>
-        <li class="list-group-item ">{{ game.complexity }}</li>
-        <li class="list-group-item ">Durée de la partie environ : {{ game.gameTimeMin ? game.gameTimeMin|date('H:i') : '' }} à {{ game.gameTimeMax ? game.gameTimeMax|date('H:i') : '' }}</li>
-        <li class="list-group-item "> De {{ game.numberPlayerMin }} à {{ game.numberPlayerMax }} joueurs</li>
-    </ul>
+    <div>
+        <ul class="list-group list-group-flush list-color">
+            <li class="list-group-item ">Créé en {{ game.creationDate|date ("Y") }}</li>
+            <li class="list-group-item ">A partir de +{{ game.age }} ans</li>
+            <li class="list-group-item ">{{ game.complexity }}</li>
+            <li class="list-group-item ">{{ game.rule }}</li>
+            <li class="list-group-item ">Durée de la partie environ
+                : {{ game.gameTimeMin ? game.gameTimeMin|date('H:i') : '' }}
+                à {{ game.gameTimeMax ? game.gameTimeMax|date('H:i') : '' }}</li>
+            <li class="list-group-item "> De {{ game.numberPlayerMin }} à {{ game.numberPlayerMax }} joueurs</li>
+        </ul>
+    </div>
 {% endblock %}

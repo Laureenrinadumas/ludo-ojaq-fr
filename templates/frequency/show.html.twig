@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Frequency{% endblock %}
+{% block title %}Fréquence de jeu{% endblock %}
 
 {% block body %}
-    <h1>Frequency</h1>
+    <h1>Fréquence de jeu</h1>
 
     <table class="table">
         <tbody>
@@ -12,11 +12,11 @@
                 <td>{{ frequency.id }}</td>
             </tr>
             <tr>
-                <th>UseGame</th>
+                <th>Date de la dernière partie</th>
                 <td>{{ frequency.useGame ? frequency.useGame|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>GameRound</th>
+                <th>Tour de jeu</th>
                 <td>{{ frequency.gameRound }}</td>
             </tr>
             <tr>
@@ -26,9 +26,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('frequency_index') }}">back to list</a>
+    <a href="{{ path('frequency_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('frequency_edit', {'id': frequency.id}) }}">edit</a>
+    <a href="{{ path('frequency_edit', {'id': frequency.id}) }}">Éditer</a>
 
     {{ include('frequency/_delete_form.html.twig') }}
 {% endblock %}

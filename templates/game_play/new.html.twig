@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New GamePlay{% endblock %}
+{% block title %}Nouvelle mécanique de jeu{% endblock %}
 
 {% block body %}
-    <h1>Create new GamePlay</h1>
+    <h1>Créer une nouvelle mécanique de jeu</h1>
 
     {{ include('game_play/_form.html.twig') }}
 
-    <a href="{{ path('game_play_index') }}">back to list</a>
+    <a href="{{ path('game_play_index') }}">Retour à la liste</a>
 {% endblock %}
